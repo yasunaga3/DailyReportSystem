@@ -17,7 +17,7 @@
 				<h1><a href="<c:url value='/login?page=1' />">日報管理システム</a></h1>&nbsp;&nbsp;&nbsp;
 				<c:if test="${sessionScope.login_employee != null}">
 					<c:if test="${sessionScope.login_employee.admin_flag == 1}">
-						<a href="<c:url value='/employees/index' />">従業員管理</a>&nbsp;
+						<a href="<c:url value='/employees?action=index' />">従業員管理</a>&nbsp;
 					</c:if>
 					<a href="<c:url value='/reports/index' />">日報管理</a>&nbsp;
 				</c:if>
@@ -32,8 +32,8 @@
 		</div><!-- "header" -->
 		<!-------------------------------------------------------------------------------------------------->
 
-		<div id="content">${param.content}</div>
-		<div id="footer">by Tako Kirameki.</div>
+		<div id="content">${param.content}</div><!-- コンテンツ -->
+		<div id="footer">by Tako Kirameki.</div><!-- フッター -->
 	</div><!-- "wrapper" -->
 </body>
 

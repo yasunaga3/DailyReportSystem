@@ -1,4 +1,4 @@
-package controllers.login;
+package controller;
 
 import java.io.IOException;
 
@@ -55,7 +55,7 @@ public class LoginServlet extends HttpServlet {
 			request.setAttribute("flush", "ログアウトしました。");
 			url = "/login.jsp";
 		}
-
+		// 	遷移先URLの設定
 		RequestDispatcher rd = request.getRequestDispatcher(url);
 		rd.forward(request, response);
 	}
