@@ -32,7 +32,8 @@
         	</tbody>
         </table>
 
-        <%------------- ページネーション -----------%>
+        <%-------------------------- ページネーション --------------------------%>
+        <%---- 属性   item_count=日報リストの総件数,  link=リンク先URL -----%>
 		<jsp:include page="../layout/pagenation.jsp">
 		    <jsp:param name="item_count" value="${reports_count}" />
 		    <jsp:param name="link" value="/login" />

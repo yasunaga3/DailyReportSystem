@@ -8,7 +8,26 @@ body {
 #header {
     width: 100%;
     height: 70px;
-    background-color: #408080;
+    background-color: #008000;
+}
+
+#header a {
+    color: #eeeeee;
+}
+
+#header_menu {
+    width: 57%;
+    padding-top: 17px;
+    padding-left: 3%;
+    display: inline-block;
+}
+
+#employee_name {
+    color: #cccccc;
+    width: 36%;
+    padding-right: 3%;
+    text-align: right;
+    display: inline-block;
 }
 
 #content {
@@ -18,10 +37,11 @@ body {
 }
 
 h1 {
-    width: 94%;
-    padding-top: 17px;
-    padding-left: 3%;
     font-size: 24px;
+    display: inline;
+}
+
+h1 a {
     color: #eeeeee;
 }
 
@@ -30,9 +50,13 @@ h2 {
     margin-bottom: 15px;
 }
 
-li {
-    margin-top: 10px;
-    margin-bottom: 10px;
+h3 {
+    font-size: larger;
+}
+
+a {
+    text-decoration: none;
+    color: #24738e;
 }
 
 p {
@@ -40,9 +64,13 @@ p {
     margin-bottom: 15px;
 }
 
-a {
-    text-decoration: none;
-    color: #24738e;
+pre {
+    font-family: "Hiragino Kaku Gothic Pro",Meiryo,"MS PGothic",Helvetica,Arial,sans-serif;
+}
+
+li {
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 table, tr, th, td {
@@ -91,4 +119,46 @@ button {
     margin-bottom: 15px;
     color: #721c24;
     background-color: #f8d7da;
+}
+
+table#employee_list th {
+    width: 30%;
+    padding: 10px 2%;
+}
+
+table#employee_list td {
+    width: 29%;
+    padding: 10px 2%;
+}
+
+tr.row1 {
+        background-color: #f2f2f2;
+}
+tr.row0 {
+        background-color: #ffffff;
+}
+
+select {
+    height: 30px;
+}
+
+table#report_list th {
+    font-weight: bold;
+    padding: 10px 2%;
+}
+
+table#report_list .report_name {
+    width: 20%;
+    padding: 10px 2%;
+}
+table#report_list .report_date {
+    width: 20%;
+}
+
+table#report_list .report_title {
+    width: 37%;
+}
+
+table#report_list .report_action {
+    width: 13%;
 }

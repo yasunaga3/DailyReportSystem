@@ -26,21 +26,43 @@ public class LoginServlet extends HttpServlet {
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 *   ➀ ページ遷移の際に利用する
+	 *   ② ログアウトの際に利用する
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// ページ情報の取得
-		int items_per_page = Integer.parseInt((String) this.getServletContext().getAttribute("items")); // 1ページ当たりの表示数
-		int current_page = Integer.parseInt(request.getParameter("page")); // 現行ページ
+		// 遷移先URL
+		String url = null;
+		// パラメータの取得
+		String str_current_page = request.getParameter("page"); // 現行ページの取得
+		String action = request.getParameter("action"); // ログアウト要求の取得
 
-		HttpSession session = request.getSession();
-		Employee e = (Employee) session.getAttribute("login_employee");
-		PagenationUtil.setMyReportsPage(request, e, current_page, items_per_page); // ページネーション
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/topPage/index.jsp");
+		// ページ遷移を行う場合
+		int current_page = 1; // 現行ページ用変数の初期化
+		if (str_current_page != null && !str_current_page.equals("")) {
+			// ページ関連の設定
+			int items_per_page = Integer.parseInt((String) this.getServletContext().getAttribute("items")); // 1ページ当たりの表示数
+			current_page = Integer.parseInt(str_current_page); // 現行ページの取得
+			// ページネーションを設定しページ遷移を行う
+			HttpSession session = request.getSession();
+			Employee e = (Employee) session.getAttribute("login_employee");
+			PagenationUtil.setMyReportsPage(request, e, current_page, items_per_page); // ページネーション
+			url = "/WEB-INF/views/topPage/index.jsp";
+		}
+
+		// ログアウトする場合
+		if (action != null && !action.equals("")) {
+			request.getSession().removeAttribute("login_employee");
+			request.setAttribute("flush", "ログアウトしました。");
+			url = "/login.jsp";
+		}
+
+		RequestDispatcher rd = request.getRequestDispatcher(url);
 		rd.forward(request, response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 *  ➀ ログインの際に利用する
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// ページ情報の取得
@@ -54,7 +76,7 @@ public class LoginServlet extends HttpServlet {
 		String url = null;
 		// URLとリクエスト情報の設定
 		if (login_employee == null) {
-//			request.setAttribute("_token", request.getSession().getId());
+			//			request.setAttribute("_token", request.getSession().getId());
 			request.setAttribute("hasError", true);
 			url = "login.jsp";
 		} else {
